@@ -10,6 +10,14 @@
 <body>
 
     <h1><?= $page_name?></h1>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="groups">Groups</a>
+        <a href="groups/group/topics">Topics</a>
+    </nav>
+
+    <br>
     <img src="piggy.png" />
     
 </body>
