@@ -1,3 +1,7 @@
+<?php
+    require __DIR__ . '/../functions.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,22 +10,6 @@
     <title>Groups</title>
 </head>
 <body>
-
-    <?php 
-
-        function getMygroups(){
-
-            $myGroups = [
-                "Gaming Corner",
-                "Book club",
-                "Harry Styles fandom"
-            ];
-
-            return $myGroups;
-
-        }
-    
-    ?>
 
     <h1>
         Groups
@@ -35,14 +23,25 @@
 
     <br>
 
-    <?php
+    <?php 
 
-        $myGroups = getMygroups();
+        if($_SERVER['REQUEST_METHOD'] === "GET") {
+      
+            $result = $db->query("SELECT * FROM Groups");
+                        
+            if($result->num_rows > 0) {
+                $rows = $result->fetch_all();
 
-        for($i = 0; $i < count($myGroups); $i++){
-            echo $myGroups[$i] . "<br>";
+                foreach ($rows as $row) {
+                    if (isset($row['1'])) {
+                        echo $row['1'] . "<br>";
+                    }
+                }
+            }
+            
+
         }
-
+    
     ?>
 
     <br>
