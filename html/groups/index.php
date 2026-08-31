@@ -33,8 +33,8 @@
                 $rows = $result->fetch_all();
 
                 foreach ($rows as $row) {
-                    if (isset($row['1'])) {
-                        echo $row['1'] . "<br>";
+                    if (isset($row['0']) && isset($row['1'])) {
+                        echo "<a href='group.php?id=" . $row['0'] . "'>" . $row['1'] . "</a><br>";
                     }
                 }
             }
@@ -43,10 +43,6 @@
         }
     
     ?>
-
-    <br>
-
-    <a href="group">Group</a>
     
 </body>
 </html>
