@@ -18,18 +18,28 @@
 
             if($_SERVER['REQUEST_METHOD'] === "GET") {
         
-                $id = $_GET['id'];
+                $group_id = $_GET['id'];
                 $user_id = $_SESSION['user_id'];
 
-                $result = $db->query("SELECT * FROM User_Group_Roles WHERE group_id = $id AND user_id = $user_id AND is_pending = 0");
+                $result = $db->query("SELECT * FROM User_Group_Roles WHERE group_id = $group_id AND user_id = $user_id AND is_pending = 0");
 
                 if($result->num_rows == 0){
-                    echo "Not allowed to view this page";
+
+                ?>
+
+                    <h2>Request to join</h2>
+
+                    <form method="POST" action="join.php?id=<?= $group_id ?>">
+                        <input type="submit" value="Send request" />
+                    </form>
+
+                <?php
+
                     die;
                 }
 
 
-                $result = $db->query("SELECT * FROM Groups WHERE id = $id");
+                $result = $db->query("SELECT * FROM Groups WHERE id = $group_id");
                             
                 if($result->num_rows > 0) {
                                     
@@ -49,6 +59,8 @@
         <a href="">Groups</a>
         <a href="group/topics">Topics</a>
     </nav>
+
+
     
 </body>
 </html>
