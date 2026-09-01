@@ -15,6 +15,7 @@
         <a href="/">Home</a>
         <a href="groups">Groups</a>
         <a href="groups/group/topics">Topics</a>
+        <a href="login">Log in</a>
     </nav>
 
     <br>
