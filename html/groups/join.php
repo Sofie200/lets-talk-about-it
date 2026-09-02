@@ -7,38 +7,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join group</title>
+    <title><?php require __DIR__ . '/../layout/title.php'; ?> | Join group</title>
+    <link rel="stylesheet" href="/../styles.css">
 </head>
 <body>
 
-<?php
+    <?php require __DIR__ . '/../layout/header.php'; ?>
 
-    if($_SERVER['REQUEST_METHOD'] === "POST") {
+    <?php
 
-        $group_id = $db->escape_string($_GET['id']);
-        $user_id = $_SESSION['user_id'];
+        if($_SERVER['REQUEST_METHOD'] === "POST") {
 
-        $sql = "INSERT INTO User_Group_Roles (user_id, group_id, role_id, is_user_join_request, is_pending) VALUES ('$user_id', '$group_id', '2', '1', '1')";
-        $result = $db->query($sql);
+            $group_id = $db->escape_string($_GET['id']);
+            $user_id = $_SESSION['user_id'];
 
-        var_dump($result);
-        var_dump($db->insert_id);
+            $sql = "INSERT INTO User_Group_Roles (user_id, group_id, role_id, is_user_join_request, is_pending) VALUES ('$user_id', '$group_id', '2', '1', '1')";
+            $result = $db->query($sql);
 
-        ?>
-            <h2>Request sent</h2>
-        <?php
-    }
-    else {
-        ?>
-            <h2>Request to join</h2>
+            var_dump($result);
+            var_dump($db->insert_id);
 
-            <form method="POST" action="">
-                <input type="submit" value="Send request" />
-            </form>
+            ?>
+                <h2>Request sent</h2>
+            <?php
+        }
+        else {
+            ?>
+                <h2>Request to join</h2>
 
-        <?php
-    }
-?>
+                <form method="POST" action="">
+                    <input type="submit" value="Send request" />
+                </form>
+
+            <?php
+        }
+    ?>
+
+    <?php require __DIR__ . '/../layout/footer.php'; ?>
     
 </body>
 </html>

@@ -7,17 +7,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title><?php require __DIR__ . '/../layout/title.php'; ?> | Login</title>
+    <link rel="stylesheet" href="/../styles.css">
 </head>
 <body>
 
-    <nav>
-        <a href="/">Home</a>
-        <a href="/groups">Groups</a>
-        <a href="/topics">Topics</a>
-        <a href="/me">Me</a>
-        <a href="/login">Log in</a>
-    </nav>
+    <?php require __DIR__ . '/../layout/header.php'; ?>    
 
     <?php
 
@@ -66,6 +61,8 @@
         echo "Sessionen lever: " . $_SESSION['username'];
         }
     ?>
+
+    <?php require __DIR__ . '/../layout/footer.php'; ?>
     
 </body>
 </html>

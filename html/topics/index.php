@@ -7,23 +7,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Topics</title>
+    <title><?php require __DIR__ . '/../layout/title.php'; ?> | Topics</title>
+    <link rel="stylesheet" href="/../styles.css">
 </head>
 <body>
 
-    <h1>
-        Topics
-    </h1>
+    <?php require __DIR__ . '/../layout/header.php'; ?>
 
-    <nav>
-        <a href="/">Home</a>
-        <a href="/groups">Groups</a>
-        <a href="/topics">Topics</a>
-        <a href="/me">Me</a>
-        <a href="/login">Log in</a>
-    </nav>
-
-    <br>
+    <h1>Topics</h1>
 
     <?php 
 
@@ -48,6 +39,8 @@
         }
     
     ?>
+
+    <?php require __DIR__ . '/../layout/footer.php'; ?>
     
 </body>
 </html>

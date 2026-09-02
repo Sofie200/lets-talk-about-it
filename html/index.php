@@ -1,26 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php $page_name = "Let's talk about it" ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $page_name?></title>
+    <title><?php require __DIR__ . '/layout/title.php'; ?></title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <h1><?= $page_name?></h1>
+    <?php require __DIR__ . '/layout/header.php'; ?>
 
-    <nav>
-        <a href="/">Home</a>
-        <a href="/groups">Groups</a>
-        <a href="/topics">Topics</a>
-        <a href="/me">Me</a>
-        <a href="/login">Log in</a>
-    </nav>
+    Zup
 
-    <br>
-    <img src="piggy.png" />
+    <?php require __DIR__ . '/layout/footer.php'; ?>
     
 </body>
 </html>

@@ -7,23 +7,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Groups</title>
+    <title><?php require __DIR__ . '/../layout/title.php'; ?> | Groups</title>
+    <link rel="stylesheet" href="/../styles.css">
 </head>
 <body>
+
+    <?php require __DIR__ . '/../layout/header.php'; ?>
 
     <h1>
         Groups
     </h1>
-
-    <nav>
-        <a href="/">Home</a>
-        <a href="/groups">Groups</a>
-        <a href="/topics">Topics</a>
-        <a href="/me">Me</a>
-        <a href="/login">Log in</a>
-    </nav>
-
-    <br>
 
     <?php 
 
@@ -47,6 +40,8 @@
         }
     
     ?>
+
+    <?php require __DIR__ . '/../layout/footer.php'; ?>
     
 </body>
 </html>

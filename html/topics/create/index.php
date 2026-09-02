@@ -29,48 +29,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create topic</title>
+    <title><?php require __DIR__ . '/../../layout/title.php'; ?> | Create topic</title>
+    <link rel="stylesheet" href="/../../styles.css">
 </head>
 <body>
 
-<?php
+    <?php require __DIR__ . '/../../layout/header.php'; ?>
 
-    $group_id = $db->escape_string($_GET['id']);
-    $user_id = $_SESSION['user_id'];
+    <?php
 
-    $resultUserRole = $db->query("SELECT * FROM User_Group_Roles WHERE group_id = $group_id AND user_id = $user_id AND is_pending = 0");
-    $rowsUserInfo = $resultUserRole->fetch_all();
+        $group_id = $db->escape_string($_GET['id']);
+        $user_id = $_SESSION['user_id'];
 
-    // IF not a member
-    if($resultUserRole->num_rows == 0){
+        $resultUserRole = $db->query("SELECT * FROM User_Group_Roles WHERE group_id = $group_id AND user_id = $user_id AND is_pending = 0");
+        $rowsUserInfo = $resultUserRole->fetch_all();
 
-        echo "Not authorized";
-        die;
+        // IF not a member
+        if($resultUserRole->num_rows == 0){
 
-    }else{
+            echo "Not authorized";
+            die;
 
-        if($_SERVER['REQUEST_METHOD'] === "GET") {
-        ?>
-            <h2>Create topic</h2>
+        }else{
 
-            <form method="POST">
-                <label>
-                    Topic name:
-                    <input name="topic_name" required />
-                </label>
+            if($_SERVER['REQUEST_METHOD'] === "GET") {
+            ?>
+                <h2>Create topic</h2>
 
-                <label>
-                    Topic desc:
-                    <input name="topic_desc" required />
-                </label>
+                <form method="POST">
+                    <label>
+                        Topic name:
+                        <input name="topic_name" required />
+                    </label>
 
-                <input type="submit" value="Create" />
-            </form>
+                    <label>
+                        Topic desc:
+                        <input name="topic_desc" required />
+                    </label>
 
-        <?php
+                    <input type="submit" value="Create" />
+                </form>
+
+            <?php
+            }
         }
-    }
-?>
-    
+    ?>
+
+    <?php require __DIR__ . '/../../layout/footer.php'; ?>
+        
 </body>
 </html>

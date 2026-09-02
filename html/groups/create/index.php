@@ -33,28 +33,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create group</title>
+    <title><?php require __DIR__ . '/../../layout/title.php'; ?> | Create group</title>
+    <link rel="stylesheet" href="/../../styles.css">
 </head>
 <body>
 
-<?php
+    <?php require __DIR__ . '/../../layout/header.php'; ?>
 
-    if($_SERVER['REQUEST_METHOD'] === "GET") {
-        ?>
-            <h2>Create group</h2>
+    <?php
 
-            <form method="POST">
-                <label>
-                    Group name:
-                    <input name="group_name" required />
-                </label>
+        if($_SERVER['REQUEST_METHOD'] === "GET") {
+            ?>
+                <h2>Create group</h2>
 
-                <input type="submit" value="Create" />
-            </form>
+                <form method="POST">
+                    <label>
+                        Group name:
+                        <input name="group_name" required />
+                    </label>
 
-        <?php
-    }
-?>
+                    <input type="submit" value="Create" />
+                </form>
+
+            <?php
+        }
+    ?>
+
+    <?php require __DIR__ . '/../../layout/footer.php'; ?>
     
 </body>
 </html>

@@ -1,3 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+    --primary: #4a90e2;
+    --secondary: #d64550;
+    --background-primary: #ffffff;
+    --font-primary: "Nunito", sans-serif;
+    --font-accent: "Doto", serif;
+    --font-color: #000000;
+    --radius: 8px;
+    --padding: 16px;
+}
+
+*{
+    box-sizing: border-box;
+}
+
 body{
-    background-color: darkkhaki;
+    font-family: var(--font-primary);
+    font-size: 16px;
+    color: var(--font-color);
+    line-height: 1.2rem;
+
+    background-color: var(--background-primary);
+}
+
+header, nav, main, footer {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+header{
+    font-family: var(--font-accent);
+    font-size: 3rem;
 }
