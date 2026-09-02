@@ -24,8 +24,9 @@
 
             $topic_id = $_GET['id'];
             $user_id = $_SESSION['user_id'];
+            $group_id = null;
 
-            $resultTopicInfo = $db->query("SELECT t.topic_name, t.description, t.created_at, u.username, g.group_name FROM Topics t
+            $resultTopicInfo = $db->query("SELECT t.topic_name, t.description, t.created_at, u.username, g.group_name, g.id FROM Topics t
                 LEFT JOIN Users u ON u.id = t.user_id
                 LEFT JOIN Groups g ON g.id = t.group_id
                 WHERE t.id = $topic_id
@@ -33,6 +34,10 @@
                         
             if($resultTopicInfo->num_rows > 0) {
                 $rows = $resultTopicInfo->fetch_all();
+
+                global $group_id;
+                $group_id = $rows['0']['5'];
+
                 echo "<h1>" . $rows['0']['0'] . "</h1><p>" . $rows['0']['1'] . "</p><i>" . $rows['0']['3'] . " " . $rows['0']['2'] . " i gruppen " . $rows['0']['4'] . "</i><br><br>";
             }
 
@@ -45,9 +50,16 @@
 
             // IF not a member
             if($resultUserRole->num_rows == 0){
+                ?>
+                <h2>Not authorized</h2>
 
-                echo "<h2>Not authorized</h2>";
+                <h2>Request to join</h2>
 
+                <form method="POST" action="/groups/join.php?id=<?=$group_id?>">
+                    <input type="submit" value="Send request" />
+                </form>
+
+                <?php 
                 die;
             }
 
