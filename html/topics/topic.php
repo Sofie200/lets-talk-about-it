@@ -97,7 +97,7 @@
                 <form method="POST" action="topic.php?id=<?=$topic_id?>">
                     <label>
                         Message:
-                        <input name="message" required />
+                        <textarea name="message" required></textarea>
                     </label>
                     <input type="submit" value="Post" />
                 </form>

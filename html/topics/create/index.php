@@ -59,12 +59,12 @@
                 <form method="POST">
                     <label>
                         Topic name:
-                        <input name="topic_name" required />
+                        <input type="text" name="topic_name" required />
                     </label>
 
                     <label>
                         Topic desc:
-                        <input name="topic_desc" required />
+                        <textarea name="topic_desc" required></textarea>
                     </label>
 
                     <input type="submit" value="Create" />

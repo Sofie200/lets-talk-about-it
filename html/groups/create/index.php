@@ -49,7 +49,7 @@
                 <form method="POST">
                     <label>
                         Group name:
-                        <input name="group_name" required />
+                        <input type="text" name="group_name" required />
                     </label>
 
                     <input type="submit" value="Create" />

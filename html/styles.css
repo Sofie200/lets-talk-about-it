@@ -1,14 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 :root {
-    --primary: #4a90e2;
-    --secondary: #d64550;
-    --background-primary: #ffffff;
+    /* ===== COLORS ===== */
+    --color-primary: #ff8a00;
+    /* Orange accent – varm, modern */
+    --color-primary-light: #ffb566;
+    /* Ljusare orange för hover */
+    --color-primary-soft: #ffe3c2;
+    /* Superljus orange för highlights */
+
+    --color-bg: #f7f7f7;
+    /* Ljus, modern bakgrund */
+    --color-bg-alt: #ffffff;
+    /* Ren vit för kort/paneler */
+    --color-surface: #fafafa;
+    /* Inputs, sektioner */
+    --color-border: #e2e2e2;
+    /* Diskret grå border */
+
+    --color-text: #222222;
+    /* Primär text – mörk men mjuk */
+    --color-text-muted: #666666;
+    /* Sekundär text */
+    --color-heading: #111111;
+    /* Rubriker */
+
+    /* ===== FONTS ===== */
     --font-primary: "Nunito", sans-serif;
     --font-accent: "Doto", serif;
-    --font-color: #000000;
-    --radius: 8px;
-    --padding: 16px;
+
+    /* ===== SPACING ===== */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 40px;
+
+    /* ===== RADIUS ===== */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 18px;
+
+    /* ===== SHADOWS ===== */
+    --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+    /* ===== TRANSITIONS ===== */
+    --transition-fast: 0.15s ease;
+    --transition-medium: 0.3s ease;
 }
 
 *{
@@ -16,21 +55,103 @@
 }
 
 body{
+    margin: 0;
     font-family: var(--font-primary);
     font-size: 16px;
-    color: var(--font-color);
+    color: var(--color-text);
     line-height: 1.2rem;
 
-    background-color: var(--background-primary);
+    background-color: var(--color-bg);
 }
 
-header, nav, main, footer {
+#title, #nav-items, main, footer {
     max-width: 1200px;
     margin: auto;
-    padding: 20px;
 }
 
 header{
     font-family: var(--font-accent);
-    font-size: 3rem;
+    font-size: 4rem;
+    line-height: 4.5rem;
+    color: var(--color-primary);
+    padding: 20px 0;
+}
+
+nav{
+    background-color: var(--color-primary-light);
+    padding: 10px;
+}
+
+nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px 0;
+}
+
+a{
+    color: var(--color-primary);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    max-width: 400px;
+}
+
+label {
+    font-weight: 600;
+    color: var(--color-heading);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-primary);
+    color: var(--color-text);
+    transition: var(--transition-fast);
+    display: block;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"],
+textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+input[type="submit"] {
+    background: var(--color-primary);
+    color: var(--color-bg-alt);
+    padding: var(--space-sm) var(--space-md);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-medium);
+}
+
+input[type="submit"]:hover {
+    background: var(--color-primary-light);
 }

@@ -40,17 +40,17 @@
                 <form method="POST">
                     <label>
                         Username:
-                        <input name="username" required />
+                        <input type="text" name="username" required />
                     </label>
 
                     <label>
                         First name:
-                        <input name="first_name" required />
+                        <input type="text" name="first_name" required />
                     </label>
 
                     <label>
                         Last name:
-                        <input name="last_name" required />
+                        <input type="text" name="last_name" required />
                     </label>
 
                     <label>
