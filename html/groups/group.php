@@ -34,8 +34,10 @@
 
     <nav>
         <a href="/">Home</a>
-        <a href="">Groups</a>
-        <a href="group/topics">Topics</a>
+        <a href="/groups">Groups</a>
+        <a href="/topics">Topics</a>
+        <a href="/me">Me</a>
+        <a href="/login">Log in</a>
     </nav>
 
     <?php 
