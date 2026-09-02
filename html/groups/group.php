@@ -69,6 +69,7 @@
             else if($resultUserRole->num_rows > 0){
                 
                 echo "Member";
+                echo "<p><a href='/topics/create?id=$group_id'>Create new topic</a></p>";
 
                 // IF Admin
                 if($rowsUserInfo['0']['3'] == '1'){
@@ -97,6 +98,24 @@
                     }
 
                 }
+
+                global $group_id;
+
+                $resultTopics = $db->query("SELECT t.topic_name, t.description, t.created_at, u.username, t.id FROM Topics t
+                    LEFT JOIN Users u ON u.id = t.user_id
+                    WHERE t.group_id = $group_id 
+                    ORDER BY t.created_at DESC;");
+
+                $rowsPosts = $resultTopics->fetch_all();
+                            
+                if($resultTopics->num_rows > 0) {
+
+                    foreach ($rowsPosts as $row) {
+                        echo "<p><a href='/topics/topic.php?id=" . $row['4'] . "'>" . $row['0'] . "</a><br>" . $row['1'] . "<br>" . $row['2'] . " " . $row['3'] . "</p>";
+                    }
+                                    
+                }
+                
             }
         }
     ?>
