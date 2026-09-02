@@ -1,5 +1,18 @@
 <?php
     require __DIR__ . '/../functions.php';
+
+    if($_SERVER['REQUEST_METHOD'] === "POST") {
+
+        $user_id = $_SESSION['user_id'];
+        $topic_id = $db->escape_string($_GET['id']);
+        $message = $db->escape_string($_POST['message']);
+
+        $sql = "INSERT INTO Posts (user_id, topic_id, description) VALUES ('$user_id', '$topic_id', '$message')";
+        $result = $db->query($sql);
+
+        header("Location: topic.php?id=" . $topic_id);
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -17,10 +30,10 @@
         <a href="/groups">Groups</a>
         <a href="/topics">Topics</a>
     </nav>
-
+    
     <?php 
 
-        if($_SERVER['REQUEST_METHOD'] === "GET") {
+    if($_SERVER['REQUEST_METHOD'] === "GET") {
 
             $topic_id = $_GET['id'];
             $user_id = $_SESSION['user_id'];
@@ -69,7 +82,7 @@
                 $resultPosts = $db->query("SELECT p.description, p.created_at, u.username FROM Posts p
                     LEFT JOIN Users u ON u.id = p.user_id
                     WHERE p.topic_id = $topic_id
-                    ORDER BY p.created_at DESC;");
+                    ORDER BY p.created_at ASC;");
 
                 $rowsPosts = $resultPosts->fetch_all();
                             
@@ -80,6 +93,20 @@
                     }
                                     
                 }
+
+                ?>
+
+                <h2>Join conversation</h2>
+
+                <form method="POST" action="topic.php?id=<?=$topic_id?>">
+                    <label>
+                        Message:
+                        <input name="message" required />
+                    </label>
+                    <input type="submit" value="Post" />
+                </form>
+
+                <?php
                 
             }
         }
