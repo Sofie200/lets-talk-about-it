@@ -1,17 +1,5 @@
 <?php
     require __DIR__ . '/../../functions.php';
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create group</title>
-</head>
-<body>
-
-<?php
 
     if($_SERVER['REQUEST_METHOD'] === "POST") {
 
@@ -27,22 +15,31 @@
             
             $sql = "INSERT INTO User_Group_Roles (user_id, group_id, role_id, is_pending) VALUES ('$user_id', '$new_group_id', '1', '0')";
             $result = $db->query($sql);
+            
+            header("Location: /groups/group.php?id=$new_group_id");
 
-            //var_dump($result);
-            //var_dump($db->insert_id);
+            echo "då";
+            exit;
 
         } else {
             echo "Something went wrong";
         }
 
-        //var_dump($result);
-        //var_dump($db->insert_id);
-
-        ?>
-            <h2>Group created</h2>
-        <?php
     }
-    else {
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create group</title>
+</head>
+<body>
+
+<?php
+
+    if($_SERVER['REQUEST_METHOD'] === "GET") {
         ?>
             <h2>Create group</h2>
 

@@ -1,5 +1,27 @@
 <?php
     require __DIR__ . '/../../functions.php';
+
+    if($_SERVER['REQUEST_METHOD'] === "POST") {
+
+        $topic_name = $db->escape_string($_POST['topic_name']);
+        $topic_desc = $db->escape_string($_POST['topic_desc']);
+        $group_id = $db->escape_string($_GET['id']);
+        $user_id = $_SESSION['user_id'];
+
+        $sql = "INSERT INTO Topics (topic_name, description, user_id, group_id) VALUES ('$topic_name', '$topic_desc', '$user_id', '$group_id')";
+        $result = $db->query($sql);
+
+        if ($result) {
+
+            $topic_id = $db->insert_id;
+            header("Location: /groups/group.php?id=$group_id");
+            exit;
+            
+        } else {
+            echo "Something went wrong";
+        }
+
+    }
 ?>
 
 <!DOCTYPE html>
@@ -27,46 +49,25 @@
 
     }else{
 
-        if($_SERVER['REQUEST_METHOD'] === "POST") {
+        if($_SERVER['REQUEST_METHOD'] === "GET") {
+        ?>
+            <h2>Create topic</h2>
 
-            $topic_name = $db->escape_string($_POST['topic_name']);
-            $topic_desc = $db->escape_string($_POST['topic_desc']);
-            $group_id = $db->escape_string($_GET['id']);
-            $user_id = $_SESSION['user_id'];
+            <form method="POST">
+                <label>
+                    Topic name:
+                    <input name="topic_name" required />
+                </label>
 
-            $sql = "INSERT INTO Topics (topic_name, description, user_id, group_id) VALUES ('$topic_name', '$topic_desc', '$user_id', '$group_id')";
-            $result = $db->query($sql);
+                <label>
+                    Topic desc:
+                    <input name="topic_desc" required />
+                </label>
 
-            if ($result) {
+                <input type="submit" value="Create" />
+            </form>
 
-                $topic_id = $db->insert_id;
-                header("/topics?id=<?=$topic_id?>");
-                exit;
-                
-            } else {
-                echo "Something went wrong";
-            }
-
-        }
-        else {
-            ?>
-                <h2>Create topic</h2>
-
-                <form method="POST">
-                    <label>
-                        Topic name:
-                        <input name="topic_name" required />
-                    </label>
-
-                    <label>
-                        Topic desc:
-                        <input name="topic_desc" required />
-                    </label>
-
-                    <input type="submit" value="Create" />
-                </form>
-
-            <?php
+        <?php
         }
     }
 ?>

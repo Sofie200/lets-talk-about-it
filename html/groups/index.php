@@ -28,6 +28,8 @@
     <?php 
 
         if($_SERVER['REQUEST_METHOD'] === "GET") {
+
+            echo "<p><a href='/groups/create'>Create new group</a></p>";
       
             $result = $db->query("SELECT * FROM Groups");
                         
