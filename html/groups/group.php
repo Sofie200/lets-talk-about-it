@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php require __DIR__ . '/../layout/title.php'; ?> | Group</title>
+    <title><?php require __DIR__ . '/../layout/title.php'; ?></title>
     <link rel="stylesheet" href="/../styles.css">
 </head>
 <body>
@@ -15,29 +15,40 @@
     <?php require __DIR__ . '/../layout/header.php'; ?>
     
     <?php 
-
-        if($_SERVER['REQUEST_METHOD'] === "GET") {
-
+    
+        if($_SERVER['REQUEST_METHOD'] === "GET") {  
+        
             $group_id = $_GET['id'];
             $user_id = $_SESSION['user_id'];
+            $group_name = "";
 
-            $resultGroupInfo = $db->query("SELECT * FROM Groups WHERE id = $group_id");
+            $resultGroupInfo = $db->query("SELECT g.id, g.group_name, g.group_desc, g.created_at, u.username FROM Groups g
+                LEFT JOIN Users u ON u.id = g.created_by
+                WHERE g.id = $group_id;");
                         
             if($resultGroupInfo->num_rows > 0) {
                                 
                 if($resultGroupInfo->num_rows > 0) {
                     $rows = $resultGroupInfo->fetch_all();
-                    echo "<h1>" . $rows['0']['1'] . "</h1>";
+
+                    global $group_name;
+                    $group_name = $rows['0']['1'];
+
+                    ?>
+
+                        <script type="text/javascript">
+                            document.title = document.title + " | <?=$group_name?>";
+                        </script>
+                        <div class="top-grid">
+                            <div>
+                                <h1><?=$rows['0']['1']?></h1>
+                                <p><?=$rows['0']['2']?></p>
+                                <div class="fine-print"><?=$rows['0']['4']?> <?=$rows['0']['3']?></div>
+                            
+                    <?php
+
                 }
             }
-
-        }
-    
-
-        if($_SERVER['REQUEST_METHOD'] === "GET") {
-
-            $group_id = $_GET['id'];
-            $user_id = $_SESSION['user_id'];
 
             $resultUserRole = $db->query("SELECT * FROM User_Group_Roles WHERE group_id = $group_id AND user_id = $user_id AND is_pending = 0");
             $rowsUserInfo = $resultUserRole->fetch_all();
@@ -47,28 +58,30 @@
 
             ?>
 
-                <h2>Request to join</h2>
-
+                    </div>
+                </div>
+            
                 <form method="POST" action="join.php?id=<?= $group_id ?>">
-                    <input type="submit" value="Send request" />
+                    <input type="submit" value="Request to join" />
                 </form>
 
             <?php
 
                 die;
-
             }
 
             // IF Member
             else if($resultUserRole->num_rows > 0){
-                
-                echo "Member";
-                echo "<p><a href='/topics/create?id=$group_id'>Create new topic</a></p>";
 
+                ?>
+                    </div>
+                    <div><a href='/topics/create?id=<?=$group_id?>'>&#10133; Create new topic</a></div>
+                </div>
+
+                <?php
+                
                 // IF Admin
                 if($rowsUserInfo['0']['3'] == '1'){
-                    
-                    echo "Admin";
 
                     if($_SERVER['REQUEST_METHOD'] === "GET") {
 
@@ -80,13 +93,17 @@
 
                         if($resultJoinRequests->num_rows > 0){
 
-                            echo "<h3>Join requests:</h3>";
+                            echo "<div class='join-requests'><h3>Join requests:</h3>";
 
                             foreach ($rowsJoinRequest as $row) {
                                 if (isset($row['2'])) {
-                                    echo $row['0'] . " " . $row['1'] . "<form method='POST' action='accept.php?id=" . $row['2'] . "'><input type='submit' value='Accept' /></form><br>";
+                                    echo "<div><span>";
+                                    echo $row['0'] . " " . $row['1'] . "</span><form method='POST' action='accept.php?id=" . $row['2'] . "'><input type='submit' value='Accept' /></form>";
+                                    echo "</div>";
                                 }
                             }
+
+                            echo "</div>";
                         }
 
                     }

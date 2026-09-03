@@ -4,9 +4,10 @@
     if($_SERVER['REQUEST_METHOD'] === "POST") {
 
         $group_name = $db->escape_string($_POST['group_name']);
+        $group_desc = $db->escape_string($_POST['group_desc']);
         $user_id = $_SESSION['user_id'];
 
-        $sql = "INSERT INTO Groups (group_name, created_by) VALUES ('$group_name', '$user_id')";
+        $sql = "INSERT INTO Groups (group_name, group_desc, created_by) VALUES ('$group_name', '$group_desc', '$user_id')";
         $result = $db->query($sql);
 
         if ($result) {
@@ -44,12 +45,17 @@
 
         if($_SERVER['REQUEST_METHOD'] === "GET") {
             ?>
-                <h2>Create group</h2>
+                <h1>Create group</h1>
 
                 <form method="POST">
                     <label>
                         Group name:
                         <input type="text" name="group_name" required />
+                    </label>
+
+                    <label>
+                        Group description:
+                        <textarea name="group_desc" required /></textarea>
                     </label>
 
                     <input type="submit" value="Create" />

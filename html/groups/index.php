@@ -13,25 +13,27 @@
 <body>
 
     <?php require __DIR__ . '/../layout/header.php'; ?>
+    <?php if($_SERVER['REQUEST_METHOD'] === "GET") { ?>
 
-    <h1>
-        Groups
-    </h1>
+            <div class="top-grid">
+                <h1>
+                    Groups
+                </h1>
+                <div><a href='/groups/create'>&#10133; Create new group</a></div>
+            </div>
 
-    <?php 
-
-        if($_SERVER['REQUEST_METHOD'] === "GET") {
-
-            echo "<p><a href='/groups/create'>Create new group</a></p>";
+        <?php 
       
-            $result = $db->query("SELECT * FROM Groups");
+            $result = $db->query("SELECT g.id, g.group_name, g.group_desc, g.created_at, u.username FROM Groups g
+                LEFT JOIN Users u ON u.id = g.created_by
+                ORDER BY g.created_at DESC;");
                         
             if($result->num_rows > 0) {
                 $rows = $result->fetch_all();
 
                 foreach ($rows as $row) {
-                    if (isset($row['0']) && isset($row['1'])) {
-                        echo "<a href='group.php?id=" . $row['0'] . "'>" . $row['1'] . "</a><br>";
+                    if (isset($row['0'])) {
+                        echo "<a class='group-card' href='group.php?id=" . $row['0'] . "'><h2>" . $row['1'] . "</h2><p>" . $row['2'] . "</p><div>" . $row['4'] . " " . $row['3'] . "</div></a><br>";
                     }
                 }
             }

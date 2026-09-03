@@ -1,5 +1,10 @@
 <?php
     require __DIR__ . '/../functions.php';
+
+    if($_SERVER['REQUEST_METHOD'] === "GET") {
+        header("Location: /groups");
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -36,18 +41,10 @@
                         WHERE id = $request_id;";
                     $result = $db->query($sql);
 
-                    var_dump($result);
-                    var_dump($db->insert_id);
-
                 }
 
             ?>
-                <h2>Request accepted</h2>
-            <?php
-        }
-        else {
-            ?>
-                <h2>Not authorized</h2>
+                <h1>Request accepted!</h1>
             <?php
         }
     ?>

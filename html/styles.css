@@ -65,7 +65,7 @@ body{
 }
 
 #title, #nav-items, main, footer {
-    max-width: 1200px;
+    max-width: 800px;
     margin: auto;
 }
 
@@ -84,20 +84,32 @@ nav{
 
 nav a {
     color: var(--color-text);
-    text-decoration: none;
     margin-right: 10px;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    color:var(--color-text-muted);
 }
 
 main {
-    padding: 20px 0;
+    padding: 50px 0;
+}
+
+h1{
+    margin-bottom: 30px;
+}
+
+h1, h2 {
+    margin-top: 0;
 }
 
 a{
     color: var(--color-primary);
+    text-decoration: none;
+}
+
+a:hover{
+    color: var(--color-primary-light);
 }
 
 form {
@@ -105,6 +117,7 @@ form {
     flex-direction: column;
     gap: var(--space-md);
     max-width: 400px;
+    padding: 20px 0;
 }
 
 label {
@@ -116,14 +129,17 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 textarea {
+    width: 100%;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     padding: var(--space-sm);
     border-radius: var(--radius-sm);
     font-family: var(--font-primary);
+    font-size: 1rem;
     color: var(--color-text);
     transition: var(--transition-fast);
     display: block;
+    margin-top: 5px;
 }
 
 input[type="text"]:focus,
@@ -147,6 +163,7 @@ input[type="submit"] {
     border: none;
     border-radius: var(--radius-md);
     font-family: var(--font-primary);
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition-medium);
@@ -154,4 +171,46 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background: var(--color-primary-light);
+}
+
+.top-grid{
+    display: flex;
+    justify-content: space-between;
+    align-items:start;
+    margin-bottom: 30px;
+}
+
+.group-card {
+    display: block;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 20px;
+}
+
+.group-card p {
+    color: var(--color-text);
+    margin: 8px 0;
+}
+
+.group-card div, .fine-print{
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.join-requests{
+    background-color: var(--color-primary-soft);
+    border: solid 1px var(--color-primary);
+    border-radius: 15px;
+    padding: 0 20px 10px;
+}
+
+.join-requests div{
+    display: grid;
+    grid-template-columns: 1fr 150px;
+    align-items: center;
+    gap:10px;
+    padding-bottom: 10px;
+}
+
+.join-requests form {
+    padding: 0;
 }

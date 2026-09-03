@@ -1,4 +1,4 @@
 </main>
 <footer>
-    <a href="/">Hej</a>
+    <a href="/"></a>
 </footer>
