@@ -18,13 +18,21 @@
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
 
+                // API-mode: return JSON instead of redirect
+                if (isset($_GET['api'])) {
+                    echo json_encode([
+                        "success" => true,
+                        "user_id" => $user['id'],
+                        "username" => $user['username'],
+                        "session_id" => session_id()
+                    ]);
+                    exit;
+                }
+
+                // Normal browser login
                 header("Location: /");
                 exit;
-
-                //echo "Logged in as " . $_SESSION['username'] . ".";
-                //echo "<br><a href='../logout.php'>Log out</a>";
-                
-            } else {
+} else {
                 echo "Wrong password";
             }
 
