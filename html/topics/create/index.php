@@ -54,7 +54,7 @@
 
             if($_SERVER['REQUEST_METHOD'] === "GET") {
             ?>
-                <h2>Create topic</h2>
+                <h1>Create topic</h1>
 
                 <form method="POST">
                     <label>

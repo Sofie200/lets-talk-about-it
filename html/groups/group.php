@@ -121,8 +121,10 @@
                             
                 if($resultTopics->num_rows > 0) {
 
+                    echo "<br><h2>Group Topics</h2>";
+
                     foreach ($rowsPosts as $row) {
-                        echo "<p><a href='/topics/topic.php?id=" . $row['4'] . "'>" . $row['0'] . "</a><br>" . $row['1'] . "<br>" . $row['2'] . " " . $row['3'] . "</p>";
+                        echo "<a class='topic-card' href='/topics/topic.php?id=" . $row['4'] . "'><h3>" . $row['0'] . "</h3><p>" . $row['1'] . "</p><div>" . $row['2'] . " " . $row['3'] . "</div></a><br>";
                     }
                                     
                 }
