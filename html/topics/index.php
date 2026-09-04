@@ -14,7 +14,10 @@
 
     <?php require __DIR__ . '/../layout/header.php'; ?>
 
-    <h1>Topics</h1>
+    <div class="top-grid">
+        <h1>Topics</h1>
+        <div></div>
+    </div>
 
     <?php 
 
@@ -30,7 +33,7 @@
 
                 foreach ($rows as $row) {
                     if (isset($row['0']) && isset($row['1'])) {
-                        echo "<a href='topic.php?id=" . $row['0'] . "'>" . $row['1'] . "</a><br>" . $row['2'] . "<br>by: " . $row['3'] . " in: " . $row['4'] . "<br><br>";
+                        echo "<a class='group-card' href='topic.php?id=" . $row['0'] . "'><h2>" . $row['1'] . "</h2><p>" . $row['2'] . "</p><div>" . $row['3'] . " in " . $row['4'] . "</div></a><br>";
                     }
                 }
             }

@@ -61,8 +61,10 @@
                     </div>
                 </div>
             
+                <br>
+
                 <form method="POST" action="join.php?id=<?= $group_id ?>">
-                    <input type="submit" value="Request to join" />
+                    <input type="submit" value="Request to join group" />
                 </form>
 
             <?php

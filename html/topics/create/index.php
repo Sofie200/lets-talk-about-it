@@ -14,7 +14,7 @@
         if ($result) {
 
             $topic_id = $db->insert_id;
-            header("Location: /groups/group.php?id=$group_id");
+            header("Location: /topics/topic.php?id=$topic_id");
             exit;
             
         } else {

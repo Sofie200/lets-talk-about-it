@@ -47,7 +47,7 @@
                 global $group_id;
                 $group_id = $rows['0']['5'];
 
-                echo "<h1>" . $rows['0']['0'] . "</h1><p>" . $rows['0']['1'] . "</p><i>" . $rows['0']['3'] . " " . $rows['0']['2'] . " i gruppen " . $rows['0']['4'] . "</i><br><br>";
+                echo "<h1>" . $rows['0']['0'] . "</h1><p>" . $rows['0']['1'] . "</p><i>" . $rows['0']['3'] . " " . $rows['0']['2'] . " in <a href='/groups/group.php?id=" . $rows['0']['5'] . "'>" . $rows['0']['4'] . "</a></i><br><br>";
             }
 
             $resultUserRole = $db->query("SELECT * FROM User_Group_Roles 
@@ -85,18 +85,17 @@
                 if($resultPosts->num_rows > 0) {
 
                     foreach ($rowsPosts as $row) {
-                        echo "<p>" . $row['0'] . "<br>" . $row['2'] . " " . $row['1'] . "</p>";
+                        echo "<div class='post-card'><p>" . $row['0'] . "<br><span class='fine-print'>" . $row['2'] . " " . $row['1'] . "</span></p></div>";
                     }
                                     
                 }
 
                 ?>
 
-                <h2>Join conversation</h2>
-
+                <br>
                 <form method="POST" action="topic.php?id=<?=$topic_id?>">
                     <label>
-                        Message:
+                        <h2>Join conversation</h2>
                         <textarea name="message" required></textarea>
                     </label>
                     <input type="submit" value="Post" />
