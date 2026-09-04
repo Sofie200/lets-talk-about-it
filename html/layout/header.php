@@ -7,7 +7,13 @@
         <a href="/groups">Groups</a>
         <a href="/topics">Topics</a>
         <a href="/me">Me</a>
-        <a href="/login">Log in</a>
+        <?php
+            if(isset($_SESSION['username'])){
+                echo "<a href='/logout.php'>Log out</a>";
+            }else{
+                echo "<a href='/login'>Log in</a>";
+            }
+        ?>
     </div>
 </nav>
 <main>

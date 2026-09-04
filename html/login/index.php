@@ -16,6 +16,8 @@
 
     <?php
 
+        echo "<h1>Log in</h1>";
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $username = $db->escape_string($_POST['username']);
@@ -33,32 +35,35 @@
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['username'] = $user['username'];
 
-                    echo "Du är inloggad som " . $_SESSION['username'];
-                    echo "<a href='../logout.php'>Logga ut</a>";
+                    echo "Logged in as " . $_SESSION['username'] . ".";
+                    echo "<br><a href='../logout.php'>Log out</a>";
                     
                 } else {
-                    echo "Fel lösenord.";
+                    echo "Wrong password";
                 }
 
             } else {
-                echo "Användaren finns inte.";
+                echo "User doesn't exist";
             }
-        }
-    ?>
+        } else if (isset($_SESSION['username'])){
 
-    <form method="POST">
-        <input type="text" name="username" placeholder="Username" required />
-        <input type="password" name="password" placeholder="Password" required />
-        <input type="submit" value="Logga in" />
-    </form>
+            echo "Logged in as " . $_SESSION['username'] . ".";
+            echo "<br><a href='../logout.php'>Log out</a>";    
 
-    Inte registrerad? <a href="/join">Skapa användare</a>
-
-    <?php
-        if (!isset($_SESSION['username'])) {
-            echo "Sessionen är död";
         } else {
-        echo "Sessionen lever: " . $_SESSION['username'];
+            
+            ?>
+
+            <form method="POST">
+                <input type="text" name="username" placeholder="Username" required />
+                <input type="password" name="password" placeholder="Password" required />
+                <input type="submit" value="Log in" />
+            </form>
+
+            Not registered? <a href="/join">Sign up</a>.
+
+        <?php
+        
         }
     ?>
 

@@ -14,6 +14,8 @@
     
     <?php require __DIR__ . '/../layout/header.php'; ?>
 
+    <h1>Sign up</h1>
+
     <?php
 
         if($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -32,11 +34,12 @@
             //var_dump($db->insert_id);
 
             ?>
-                <h2>Account created</h2>
+                <h3>Account created. <a href="/login">Log in</a>.</h3>
             <?php
         }
         else {
             ?>
+
                 <form method="POST">
                     <label>
                         Username:
