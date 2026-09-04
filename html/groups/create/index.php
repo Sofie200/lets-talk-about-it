@@ -1,6 +1,13 @@
 <?php
     require __DIR__ . '/../../functions.php';
 
+    if ($_SERVER['REQUEST_METHOD'] === "GET") { 
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /login");
+            exit;
+        }
+    }
+
     if($_SERVER['REQUEST_METHOD'] === "POST") {
 
         $group_name = $db->escape_string($_POST['group_name']);
