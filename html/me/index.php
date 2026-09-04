@@ -19,9 +19,21 @@
 
         if($_SERVER['REQUEST_METHOD'] === "GET") {
 
+
+            ?>
+
+                <div class="top-grid">
+                    <h1>
+                        My Groups
+                    </h1>
+                    <div><a href='/groups/create'>&#10133; Create new group</a></div>
+                </div>
+                
+            <?php
+
             $user_id = $_SESSION['user_id'];
       
-            $result = $db->query("SELECT Groups.group_name, Groups.id FROM User_Group_Roles 
+            $result = $db->query("SELECT Groups.group_name, Groups.id, Groups.group_desc FROM User_Group_Roles 
                 LEFT JOIN Groups on Groups.id = User_Group_Roles.group_id 
                 WHERE User_Group_Roles.user_id = $user_id AND is_pending = 0;");
                         
@@ -30,9 +42,11 @@
 
                 foreach ($rows as $row) {
                     if (isset($row['0']) && isset($row['1'])) {
-                        echo "<a href='/groups/group.php?id=" . $row['1'] . "'>" . $row['0'] . "</a><br>";
+                        echo "<a class='group-card' href='/groups/group.php?id=" . $row['1'] . "'><h2>" . $row['0'] . "</h2><p>" . $row['2'] . "</p></a><br>";
                     }
                 }
+            }else{
+                echo "Nothing here yet :(";
             }
             
 
