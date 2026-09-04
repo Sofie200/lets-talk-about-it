@@ -65,13 +65,14 @@ body{
 }
 
 #title, #nav-items, main, footer {
-    max-width: 800px;
+    max-width: 600px;
     margin: auto;
 }
 
 header{
     font-family: var(--font-accent);
     font-size: 4rem;
+    font-weight: bold;
     line-height: 4.5rem;
     color: var(--color-primary);
     padding: 20px 0;

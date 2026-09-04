@@ -14,7 +14,11 @@
 
     <?php require __DIR__ . '/layout/header.php'; ?>
 
-    Zup
+    <h1>✨ Welcome to The Rabbit Hole</h1>
+    <p>You've hopped into The Rabbit Hole - a cozy warren for curious minds who love digging deeper than most would dare.</p> 
+    <p>Here, conversations multiply faster than rabbits, ideas twist and turn like tunnels, and every thread invites you to burrow just a little further. Whether you're nibbling on a light topic or diving whiskers - first into something wildly hare - brained, you'll find plenty of fellow explorers ready to hop along.</p>
+    <p>So twitch your nose, perk those ears, and take the leap.</p>
+    <p>Let's see how deep this burrow really goes. 🐇</p>
 
     <?php require __DIR__ . '/layout/footer.php'; ?>
     
