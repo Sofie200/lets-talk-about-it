@@ -1,5 +1,38 @@
 <?php
     require __DIR__ . '/../functions.php';
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $username = $db->escape_string($_POST['username']);
+        $password = $_POST['password'];
+
+        $sql = "SELECT * FROM Users WHERE username = '$username' LIMIT 1";
+        $result = $db->query($sql);
+
+        if ($result->num_rows === 1) {
+
+            $user = $result->fetch_assoc();
+
+            if (password_verify($password, $user['pw_hash'])) {
+
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+
+                header("Location: /");
+                exit;
+
+                //echo "Logged in as " . $_SESSION['username'] . ".";
+                //echo "<br><a href='../logout.php'>Log out</a>";
+                
+            } else {
+                echo "Wrong password";
+            }
+
+        } else {
+            echo "User doesn't exist";
+        }
+
+    }
 ?>
 
 <!DOCTYPE html>
@@ -16,36 +49,11 @@
 
     <?php
 
-        echo "<h1>Log in</h1>";
+      if ($_SERVER['REQUEST_METHOD'] === 'GET'){  
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_SESSION['username'])){
 
-            $username = $db->escape_string($_POST['username']);
-            $password = $_POST['password'];
-
-            $sql = "SELECT * FROM Users WHERE username = '$username' LIMIT 1";
-            $result = $db->query($sql);
-
-            if ($result->num_rows === 1) {
-
-                $user = $result->fetch_assoc();
-
-                if (password_verify($password, $user['pw_hash'])) {
-
-                    $_SESSION['user_id'] = $user['id'];
-                    $_SESSION['username'] = $user['username'];
-
-                    echo "Logged in as " . $_SESSION['username'] . ".";
-                    echo "<br><a href='../logout.php'>Log out</a>";
-                    
-                } else {
-                    echo "Wrong password";
-                }
-
-            } else {
-                echo "User doesn't exist";
-            }
-        } else if (isset($_SESSION['username'])){
+            echo "<h1>Log in</h1>";
 
             echo "Logged in as " . $_SESSION['username'] . ".";
             echo "<br><a href='../logout.php'>Log out</a>";    
@@ -53,6 +61,8 @@
         } else {
             
             ?>
+
+            <h1>Log in</h1>
 
             <form method="POST">
                 <input type="text" name="username" placeholder="Username" required />
@@ -65,6 +75,7 @@
         <?php
         
         }
+      }
     ?>
 
     <?php require __DIR__ . '/../layout/footer.php'; ?>
