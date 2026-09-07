@@ -84,7 +84,10 @@
 
                 ?>
                     </div>
-                    <div><a href='/topics/create?id=<?=$group_id?>'>&#10133; Create new topic</a></div>
+                    <div>
+                        <a href='/groups/invite?id=<?=$group_id?>'>&#128100; Invite user</a> &nbsp; 
+                        <a href='/topics/create?id=<?=$group_id?>'>&#10133; Create new topic</a>
+                    </div>
                 </div>
 
                 <?php

@@ -10,9 +10,35 @@
 
     if($_SERVER['REQUEST_METHOD'] === "POST") {
 
-        $group_name = $db->escape_string($_POST['group_name']);
-        $group_desc = $db->escape_string($_POST['group_desc']);
+        $invite_id = $db->escape_string($_GET['id']);
         $user_id = $_SESSION['user_id'];
+
+        $resultUserRole = $db->query("SELECT * FROM User_Group_Roles 
+            WHERE group_id IN (SELECT group_id FROM User_Group_Roles WHERE invite_id = $invite_id)
+            AND user_id = $user_id AND is_pending = 0 AND role_id = 1");
+        $rowsUserInfo = $resultUserRole->fetch_all();
+
+        // IF NOT admin
+        if($resultUserRole->num_rows = 0){
+
+            header("Location: /login");
+            exit;
+        
+        }else{
+
+            $sql = "UPDATE User_Group_Roles
+                SET is_pending = 0,
+                member_since = NOW(),
+                admin_user_id = $user_id
+                WHERE id = $invite_id;";
+            $result = $db->query($sql);
+
+        }
+
+        ?>
+            <h1>Invite accepted!</h1>
+        <?php
+        }
 
         $sql = "INSERT INTO Groups (group_name, group_desc, created_by) VALUES ('$group_name', '$group_desc', '$user_id')";
         $result = $db->query($sql);
