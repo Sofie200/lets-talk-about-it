@@ -246,10 +246,19 @@ input[type="submit"]:hover, .btn:hover {
     padding-bottom: 10px;
 }
 
-.join-requests form{
+.join-requests form, .member-row form{
     padding: 0;
 }
 
 .invite-received div{
     margin: 15px 0;
+}
+
+.member-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e2e2e2;
 }

@@ -110,6 +110,9 @@
 
                     if($_SERVER['REQUEST_METHOD'] === "GET") {
 
+                        echo "<br><a href='/groups/invite?id=$group_id'>&#128100; Invite user</a><br>";
+                        echo "<a href='/groups/manage?id=$group_id'>&#128101; Manage roles</a><br><br>";
+
                         $resultJoinRequests = 
                             $db->query("SELECT first_name, last_name, User_Group_Roles.id FROM User_Group_Roles
                             INNER JOIN Users ON Users.id = User_Group_Roles.user_id
@@ -117,8 +120,6 @@
                         $rowsJoinRequest = $resultJoinRequests->fetch_all();
 
                         if($resultJoinRequests->num_rows > 0){
-
-                            echo "<br><a href='/groups/invite?id=$group_id'>&#128100; Invite user</a><br><br>";
 
                             echo "<div class='join-requests'><h3>Join requests:</h3>";
 
