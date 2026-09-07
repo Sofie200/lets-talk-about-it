@@ -165,7 +165,7 @@ textarea {
     resize: vertical;
 }
 
-input[type="submit"] {
+input[type="submit"], .btn {
     background: var(--color-primary);
     color: var(--color-bg-alt);
     padding: var(--space-sm) var(--space-md);
@@ -178,7 +178,7 @@ input[type="submit"] {
     transition: var(--transition-medium);
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover, .btn:hover {
     background: var(--color-primary-light);
 }
 
@@ -231,7 +231,7 @@ input[type="submit"]:hover {
     font-weight: 800;
 }
 
-.join-requests{
+.join-requests, .invite-received {
     background-color: var(--color-primary-soft);
     border: solid 1px var(--color-primary);
     border-radius: 15px;
@@ -246,6 +246,10 @@ input[type="submit"]:hover {
     padding-bottom: 10px;
 }
 
-.join-requests form {
+.join-requests form{
     padding: 0;
+}
+
+.invite-received div{
+    margin: 15px 0;
 }

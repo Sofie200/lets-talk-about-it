@@ -57,7 +57,11 @@
                 }
             }
 
-            $resultUserRole = $db->query("SELECT * FROM User_Group_Roles WHERE group_id = $group_id AND user_id = $user_id AND is_pending = 0");
+            $resultUserRole = $db->query("SELECT *
+                FROM User_Group_Roles ugp
+                LEFT JOIN Invites i ON i.id = ugp.invite_id
+                WHERE (i.expires_at IS NULL OR i.expires_at >= NOW()) AND ugp.group_id = $group_id AND ugp.user_id = $user_id
+                ORDER BY ugp.member_since DESC LIMIT 1;");
             $rowsUserInfo = $resultUserRole->fetch_all();
 
             // IF not a member
@@ -77,10 +81,20 @@
             <?php
 
                 die;
-            }
+            } // IF Invited
+            else if($resultUserRole->num_rows > 0 && $rowsUserInfo[0][6] == 1 && $rowsUserInfo[0][4] != null){
+                
+                $token = $rowsUserInfo[0][10];
+
+                echo "<br><div class='invite-received'><h3>You've been invited to join!</h3><div><a href='/groups/invite/accept.php?id=$token' class='btn'>Accept</a><div></div>";
+
+            // IF Join request sent
+            } else if($resultUserRole->num_rows > 0 && $rowsUserInfo[0][6] == 1 && $rowsUserInfo[0][5] == 1){
+
+                echo "<br><b>Join request is pending.</b>";
 
             // IF Member
-            else if($resultUserRole->num_rows > 0){
+            } else if($resultUserRole->num_rows > 0 && $rowsUserInfo[0][6] == 0){
 
                 ?>
                     </div>
