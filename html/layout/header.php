@@ -8,11 +8,11 @@
         
         <?php
             if(isset($_SESSION['username'])){
-                echo "<a href='/topics'>Topics</a>";
-                echo "<a href='/me'>Me</a>";
-                echo "<a href='/logout.php'>Log out</a>";
+                echo " <a href='/topics'>Topics</a> ";
+                echo " <a href='/me'>Me</a> ";
+                echo " <a href='/logout.php'>Log out</a> ";
             }else{
-                echo "<a href='/login'>Log in</a>";
+                echo " <a href='/login'>Log in</a> ";
             }
         ?>
     </div>

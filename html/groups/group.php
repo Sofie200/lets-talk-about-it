@@ -44,7 +44,7 @@
                     ?>
 
                         <script type="text/javascript">
-                            document.title = document.title + " | <?=$group_name?>";
+                            document.title = document.title + "<?=$group_name?>";
                         </script>
                         <div class="top-grid">
                             <div>
