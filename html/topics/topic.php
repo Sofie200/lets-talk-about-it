@@ -1,7 +1,7 @@
 <?php
     require __DIR__ . '/../functions.php';
 
-    $user_id = $_SESSION['user_id'];
+    $user_id = $db->escape_string($_SESSION['user_id']);
     $topic_id = $db->escape_string($_GET['id']);
 
 
@@ -23,7 +23,7 @@
             exit;
         }
 
-        $user_id = $_SESSION['user_id'];
+        $user_id = $db->escape_string($_SESSION['user_id']);
         $group_id = null;
         global $topic_id;
 

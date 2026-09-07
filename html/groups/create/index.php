@@ -12,7 +12,7 @@
 
         $group_name = $db->escape_string($_POST['group_name']);
         $group_desc = $db->escape_string($_POST['group_desc']);
-        $user_id = $_SESSION['user_id'];
+        $user_id = $db->escape_string($_SESSION['user_id']);
 
         $sql = "INSERT INTO Groups (group_name, group_desc, created_by) VALUES ('$group_name', '$group_desc', '$user_id')";
         $result = $db->query($sql);

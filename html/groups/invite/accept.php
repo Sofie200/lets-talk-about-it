@@ -32,7 +32,7 @@
         }else {
 
             $token = $db->escape_string($_GET['id']);
-            $user_id = $_SESSION['user_id'];
+            $user_id = $db->escape_string($_SESSION['user_id']);
 
             $resultUserRole = $db->query("SELECT ugp.id, ugp.group_id FROM User_Group_Roles ugp
                 LEFT JOIN Invites i ON i.id = ugp.invite_id 

@@ -13,7 +13,7 @@
         $topic_name = $db->escape_string($_POST['topic_name']);
         $topic_desc = $db->escape_string($_POST['topic_desc']);
         $group_id = $db->escape_string($_GET['id']);
-        $user_id = $_SESSION['user_id'];
+        $user_id = $db->escape_string($_SESSION['user_id']);
 
         $sql = "INSERT INTO Topics (topic_name, description, user_id, group_id) VALUES ('$topic_name', '$topic_desc', '$user_id', '$group_id')";
         $result = $db->query($sql);
@@ -46,7 +46,7 @@
     <?php
 
         $group_id = $db->escape_string($_GET['id']);
-        $user_id = $_SESSION['user_id'];
+        $user_id = $db->escape_string($_SESSION['user_id']);
 
         $resultUserRole = $db->query("SELECT * FROM User_Group_Roles WHERE group_id = $group_id AND user_id = $user_id AND is_pending = 0");
         $rowsUserInfo = $resultUserRole->fetch_all();

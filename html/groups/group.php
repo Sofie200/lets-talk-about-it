@@ -25,8 +25,8 @@
     
         if($_SERVER['REQUEST_METHOD'] === "GET") {  
         
-            $group_id = $_GET['id'];
-            $user_id = $_SESSION['user_id'];
+            $group_id = $db->escape_string($_GET['id']);
+            $user_id = $db->escape_string($_SESSION['user_id']);
             $group_name = "";
 
             $resultGroupInfo = $db->query("SELECT g.id, g.group_name, g.group_desc, g.created_at, u.username FROM Groups g

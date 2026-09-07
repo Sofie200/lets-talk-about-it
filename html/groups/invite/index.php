@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../../functions.php';
 
-$admin_id = $_SESSION['user_id'];
+$admin_id = $db->escape_string($_SESSION['user_id']);
 
 if (!isset($admin_id)) {
 
@@ -18,7 +18,7 @@ if (!isset($admin_id)) {
     exit;
 }
 
-$admin_id = $_SESSION['user_id'];
+$admin_id = $db->escape_string($_SESSION['user_id']);
 $message = '';
 $group_id = isset($_GET['id']) ? $db->escape_string($_GET['id']) : null;
 

@@ -2,7 +2,7 @@
     require __DIR__ . '/../functions.php';
 
     if($_SERVER['REQUEST_METHOD'] === "GET") {
-        header("Location: /groups/group.php?id=" . $_GET['id']);
+        header("Location: /groups/group.php?id=" . $db->escape_string($_GET['id']));
     }
 
 ?>
@@ -24,7 +24,7 @@
         if($_SERVER['REQUEST_METHOD'] === "POST") {
 
             $group_id = $db->escape_string($_GET['id']);
-            $user_id = $_SESSION['user_id'];
+            $user_id = $db->escape_string($_SESSION['user_id']);
 
             $sql = "INSERT INTO User_Group_Roles (user_id, group_id, role_id, is_user_join_request, is_pending) VALUES ('$user_id', '$group_id', '2', '1', '1')";
             $result = $db->query($sql);

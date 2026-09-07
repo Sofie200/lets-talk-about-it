@@ -38,7 +38,7 @@
                 
             <?php
 
-            $user_id = $_SESSION['user_id'];
+            $user_id = $db->escape_string($_SESSION['user_id']);
       
             $result = $db->query("SELECT Groups.group_name, Groups.id, Groups.group_desc FROM User_Group_Roles 
                 LEFT JOIN Groups on Groups.id = User_Group_Roles.group_id 

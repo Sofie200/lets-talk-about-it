@@ -1,13 +1,13 @@
 <?php
     require __DIR__ . '/../../functions.php';
 
-    $group_id = $_GET['id'];
+    $group_id = $db->escape_string($_GET['id']);
 
      if (!isset($_SESSION['user_id'])) {
         header("Location: /login");
         exit;
     }else{
-        $user_id = $_SESSION['user_id'];
+        $user_id = $db->escape_string($_SESSION['user_id']);
 
         $resultUserRole = $db->query("SELECT * FROM User_Group_Roles 
             WHERE group_id = $group_id

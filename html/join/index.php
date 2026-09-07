@@ -30,9 +30,6 @@
             $sql = "INSERT INTO Users (username, first_name, last_name, email, pw_hash) VALUES ('$username', '$first_name', '$last_name', '$email', '$pw_hash')";
             $result = $db->query($sql);
 
-            //var_dump($result);
-            //var_dump($db->insert_id);
-
             ?>
                 <h3>Account created. <a href="/login">Log in</a>.</h3>
             <?php

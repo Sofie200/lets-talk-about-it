@@ -24,7 +24,7 @@
         if($_SERVER['REQUEST_METHOD'] === "POST") {
 
             $request_id = $db->escape_string($_GET['id']);
-            $user_id = $_SESSION['user_id'];
+            $user_id = $db->escape_string($_SESSION['user_id']);
 
             $resultUserRole = $db->query("SELECT * FROM User_Group_Roles 
                 WHERE group_id IN (SELECT group_id FROM User_Group_Roles WHERE id = $request_id)

@@ -4,7 +4,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $username = $db->escape_string($_POST['username']);
-        $password = $_POST['password'];
+        $password = $db->escape_string($_POST['password']);
 
         $sql = "SELECT * FROM Users WHERE username = '$username' LIMIT 1";
         $result = $db->query($sql);
