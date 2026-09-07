@@ -99,7 +99,6 @@
                 ?>
                     </div>
                     <div>
-                        <a href='/groups/invite?id=<?=$group_id?>'>&#128100; Invite user</a> &nbsp; 
                         <a href='/topics/create?id=<?=$group_id?>'>&#10133; Create new topic</a>
                     </div>
                 </div>
@@ -118,6 +117,8 @@
                         $rowsJoinRequest = $resultJoinRequests->fetch_all();
 
                         if($resultJoinRequests->num_rows > 0){
+
+                            echo "<br><a href='/groups/invite?id=$group_id'>&#128100; Invite user</a><br><br>";
 
                             echo "<div class='join-requests'><h3>Join requests:</h3>";
 
