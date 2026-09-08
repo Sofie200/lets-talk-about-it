@@ -98,7 +98,7 @@
 
                 ?>
                     </div>
-                    <div>
+                    <div style="white-space:nowrap;">
                         <a href='/topics/create?id=<?=$group_id?>'>&#10133; Create new topic</a>
                     </div>
                 </div>

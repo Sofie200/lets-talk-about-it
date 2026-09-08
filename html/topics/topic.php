@@ -64,12 +64,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php require __DIR__ . '/../layout/title.php'; ?>Topic</title>
+    <title><?php require __DIR__ . '/../layout/title.php'; ?></title>
     <link rel="stylesheet" href="/../styles.css">
 </head>
 <body>
 
-    <?php require __DIR__ . '/../layout/header.php'; 
+    <?php require __DIR__ . '/../layout/header.php'; ?>
+
+    <script type="text/javascript">
+        document.title = document.title + "<?=$rows['0']['0']?>";
+    </script>
+
+    <?php
     
     echo "<h1>" . $rows['0']['0'] . "</h1><p>" . $rows['0']['1'] . "</p><i>" . $rows['0']['3'] . " " . $rows['0']['2'] . " in <a href='/groups/group.php?id=" . $rows['0']['5'] . "'>" . $rows['0']['4'] . "</a></i><br><br>";
     
